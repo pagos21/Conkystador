@@ -1,0 +1,122 @@
+
+conky.config = {
+-- ----------------------------------Windows Settings   
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'dock',
+    own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+    
+    own_window_transparent = true,
+    own_window_argb_visual = true,
+    
+    background = false,
+    double_buffer = true,
+-- ----------------------------------Position    
+    alignment = 'top_right',
+    
+    gap_x = 10,
+    gap_y = 40,
+    
+    minimum_height = 950,
+    minimum_width = 5,
+-- ----------------------------------Font
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+    
+    font = 'Arial:size=10',
+    
+    uppercase = false,
+    use_spacer = 'none',
+    
+    text_buffer_size = 2048,
+    use_xft = true,
+    override_utf8_locale = true,
+-- ----------------------------------Other   
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    
+    stippled_borders = 0,
+    update_interval = 1.0,
+    
+    show_graph_scale = false,
+    show_graph_range = false,
+    
+    color0 = '159D04',	-- green
+    color1 = 'CC0000',	-- red
+	color2 = '2B568E',	-- blue
+	color3 = '30CCCC',	-- light-blue
+	color4 = '2B512A',	-- nvidia-green
+	color5 = '727272',	-- grey
+	color6 = 'E08D12',  -- orange
+	color7 = '2C31F4',  -- hard-blue
+	color8 = 'FB715A',  -- light-orange
+}
+
+conky.text = [[
+#${image $HOME/.conky/Debian9/Images/Deb01.png -p 100,15 -s 80x100}
+
+${voffset 10}${color0}${font Open Sans Light:pixelsize=50}${time %H:%M:%S}${font}
+${alignc}${font Open Sans Light:pixelsize=20}${time %d/%m/%y}${font}
+${voffset 10}${color3}SYSTEM ${hr 2}
+${color4}${voffset 2}System: ${alignr}${sysname} - Kali Linux
+${color4}${voffset 4}Kernel: ${alignr}${kernel}
+
+#${color0}CPU: ${cpu cpu0}% ${alignr}${cpubar cpu0 9,90}
+${color0}${voffset 4}CPU1: ${cpu cpu1}% ${alignr}${color0}${cpubar cpu1 9,120}
+${color0}${voffset 4}CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 9,120}
+${color0}${voffset 4}CPU3: ${cpu cpu3}% ${alignr}${cpubar cpu3 9,120}
+${color0}${voffset 4}CPU4: ${cpu cpu4}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 4}CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 4}CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 4}CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 4}CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 6}RAM used: ${memperc}% ${alignr}Free: ${memeasyfree}
+
+${color1}TEMPERATURE CPU/GPU ${hr 2}
+${color0}CPU Temp:----------->  ${color1}${hwmon 2 temp 2}°C
+${color0}GPU Temp:----------->  ${color1}${nvidia temp}°C
+${color0}GPU Fan:-------------> ${color8}${execi 8 nvidia-smi -q | grep 'Fan' | cut -c44-46}%
+${color0}GPU Power:----------> ${color6}${execi 10 nvidia-smi -q | grep 'Power Draw' | cut -c44-49}W
+
+${color0}CPU USAGE ${hr 2}
+${color8}${voffset 2}${top name 1}${alignr} ${top pid 1} ${top cpu 1}
+${color5}${voffset 4}${top name 2}${alignr} ${top pid 2} ${top cpu 2}
+${color5}${voffset 4}${top name 3}${alignr} ${top pid 3} ${top cpu 3}
+${color5}${voffset 4}${top name 4}${alignr} ${top pid 4} ${top cpu 4}
+${color5}${voffset 4}${top name 5}${alignr} ${top pid 5} ${top cpu 5}
+${color5}${voffset 4}${top name 6}${alignr} ${top pid 6} ${top cpu 6}
+
+${color0}RAM USAGE ${hr 2}
+${color8}${voffset 2}${top_mem name 1}${alignr} ${top_mem pid 1} ${top_mem mem 1}
+${color5}${voffset 4}${top_mem name 2}${alignr} ${top_mem pid 2} ${top_mem mem 2}
+${color5}${voffset 4}${top_mem name 3}${alignr} ${top_mem pid 3} ${top_mem mem 3}
+${color5}${voffset 4}${top_mem name 4}${alignr} ${top_mem pid 4} ${top_mem mem 4}
+${color5}${voffset 4}${top_mem name 5}${alignr} ${top_mem pid 5} ${top_mem mem 5}
+
+${color7}HDD ${hr 2}
+${voffset 2}sda1: ${stippled_hr 1}
+${voffset 2}Used: ${fs_used /}/${fs_size /} [${fs_used_perc}%]
+${voffset 2}Free: ${fs_free /} [${fs_free_perc}%]${alignr}${color6}${fs_bar 11,120 /}
+${voffset 2}${color2}HDD: ${diskio} ${alignr}${diskiograph /dev/sda 11,120 -l}
+#ETHERNET ${hr 2}
+#   ${color0} DSpd: ${color1}${lua_parse conky_mbps ${downspeedf enp4s0}}${goto 118}${color2} USpd: ${color1}${lua_parse conky_mbps ${upspeedf enp4s0}}${alignr}${color2}Mbps
+#   ${color0} ${downspeedgraph enp4s0 10,102 5300D6 0072D6 -l} ${alignr}${upspeedgraph enp4s0 10,102 5300D6 0072D6 -l}
+#   ${color0} DMax: ${color1}${lua_parse conky_maxdwn1 ${downspeedf enp4s0}} ${goto 118}${color2} UMax: ${color1}${lua_parse conky_maxup1 ${upspeedf enp4s0}}${alignr}${color2}Mbps
+#   ${color0} DTot: ${color1}${totaldown enp4s0} ${goto 118}${color2} UTot: ${color1}${totalup enp4s0}
+
+${color2}ETH ${hr 2}
+   ${color0}Down: ${color1}${downspeed eth0}${goto 118}${color0} 
+   ${color0} ${downspeedgraph eth0 20,202 626262 CC0000 3000000 -t} 
+   Up: ${color2}${upspeed eth0}
+   ${upspeedgraph eth0 20,202 5300D6 0072D6 200000}
+   ${color4} ${hr 2}
+   ${color0} Tot-Down: ${color0}${totaldown eth0}  ${goto 118}${color0}      Tot-UP: ${color0}${totalup eth0}
+   ${color0} Local IP: --> ${color7}${addr eth0}
+#Usare vnstat per il totale down settimanale o moensile(cercare su google)
+]]
+
