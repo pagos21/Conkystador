@@ -71,10 +71,10 @@ ${color0}${voffset 4}CPU1: ${cpu cpu1}% ${alignr}${color0}${cpubar cpu1 9,120}
 ${color0}${voffset 4}CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 9,120}
 ${color0}${voffset 4}CPU3: ${cpu cpu3}% ${alignr}${cpubar cpu3 9,120}
 ${color0}${voffset 4}CPU4: ${cpu cpu4}% ${alignr}${cpubar cpu4 9,120}
-${color0}${voffset 4}CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu4 9,120}
-${color0}${voffset 4}CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu4 9,120}
-${color0}${voffset 4}CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu4 9,120}
-${color0}${voffset 4}CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu4 9,120}
+${color0}${voffset 4}CPU5: ${cpu cpu5}% ${alignr}${cpubar cpu5 9,120}
+${color0}${voffset 4}CPU6: ${cpu cpu6}% ${alignr}${cpubar cpu6 9,120}
+${color0}${voffset 4}CPU7: ${cpu cpu7}% ${alignr}${cpubar cpu7 9,120}
+${color0}${voffset 4}CPU8: ${cpu cpu8}% ${alignr}${cpubar cpu8 9,120}
 ${color0}${voffset 6}RAM used: ${memperc}% ${alignr}Free: ${memeasyfree}
 
 ${color1}TEMPERATURE CPU/GPU ${hr 2}
